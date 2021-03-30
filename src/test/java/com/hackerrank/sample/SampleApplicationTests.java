@@ -31,48 +31,9 @@ public class SampleApplicationTests {
 
     @Test
     public void defaultHelloTest() throws Exception {
-        mockMvc.perform(get("/defaultHello"))
+        mockMvc.perform(get("/endpoint/select"))
                 .andDo(print())
-                .andExpect(jsonPath("$.echo").value("Default Hello World!"))
                 .andExpect(
                         status().isOk());
-    }
-
-    @Test
-    public void defaultHelloWithParamTest() throws Exception {
-        mockMvc.perform(get("/defaultHello")
-                .param("message","False Message"))
-                .andDo(print())
-                .andExpect(jsonPath("$.echo").value("Default Hello World!"))
-                .andExpect(
-                        status().isOk());
-    }
-
-    @Test
-    public void customHelloTest() throws Exception {
-        mockMvc.perform(post("/customHello")
-                .param("message", "Custom Hello World!"))
-                .andDo(print())
-                .andExpect(jsonPath("$.echo").value("Custom Custom Hello World!"))
-                .andExpect(
-                        status().isOk());
-    }
-
-    @Test
-    public void customHelloWithEmptyParamTest() throws Exception {
-        mockMvc.perform(post("/customHello")
-                .param("message", ""))
-                .andDo(print())
-                .andExpect(jsonPath("$.echo").value("Custom "))
-                .andExpect(
-                        status().isOk());
-    }
-
-    @Test
-    public void customHelloWithoutParamTest() throws Exception {
-        mockMvc.perform(post("/customHello"))
-                .andDo(print())
-                .andExpect(
-                        status().isBadRequest());
     }
 }
